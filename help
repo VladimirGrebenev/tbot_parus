@@ -1,0 +1,32 @@
+PARUS_UK_Lipetsk
+PARUS_UK_Bot
+
+Use this token to access the HTTP API:
+6392506890:AAEiJug8xGE4qd6FqXdz2xyzoqZBNFLxcAc
+
+admin_id:
+493273552
+
+@dp.message_handler(commands=['start'])
+async def alarm(message: types.Message):
+    keyboard_markup = types.InlineKeyboardMarkup()
+    user_id_btn = types.InlineKeyboardButton(
+        'Получить ID пользывателя из Inline кнопки', callback_data='user_id')
+    keyboard_markup.row(user_id_btn)
+    await message.answer(f"Ваш ID: {message.from_user.id}",
+                         reply_markup=keyboard_markup)
+
+
+@dp.callback_query_handler(text='user_id')
+async def user_id_inline_callback(callback_query: types.CallbackQuery):
+    await callback_query.answer(f"Ваш ID: {callback_query.from_user.id}", True)
+
+
+Запись на встречу с директором:
+1) Нужно сделать чтобы встречи хранились в базе данных.
+2) Каждый четверг утром директору и секретарше приходило расписание
+встреч директора.
+3) В боте чтобы была кнопка "расписание встреч директора".
+4) Расписание должно обнуляться в четверг вечером в 18:00. Но записываться в
+базе перед удалением в проведённые встречи.
+5) Кнопки расписания должны формироваться исходя из расписания в гугл таблице.
