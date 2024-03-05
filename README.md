@@ -19,7 +19,7 @@
 - requests==2.31.0
 и т.д. -> requirements.txt
 
-# To start working development DRF
+# To start 
 
 1. стяни ветку мастер - pull master from github
 2. не забудь установить зависимости pip install -r requirements.txt
